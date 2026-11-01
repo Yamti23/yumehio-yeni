@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-seal: 'Cinzel', serif;
+    --color-washi: #F8F7F4;
+    --color-charcoal: #171614;
+    --color-cinnabar: #8B261E;
+    --color-bronze: #8C6A3C;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background-color: var(--color-washi);
+    letter-spacing: -0.015em;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.025em;
+  }
+}
+
+.font-serif-luxury {
+  font-family: var(--font-serif);
+}
+
+.font-seal {
+  font-family: var(--font-seal);
+}
+
+/* Subtle Japanese Washi Grain Overlay */
+.washi-pattern {
+  background-color: #F8F7F4;
+  background-image: radial-gradient(#171614 0.5px, transparent 0.5px), radial-gradient(#171614 0.5px, #F8F7F4 0.5px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  background-opacity: 0.03;
+}
+
+/* Red Inkan / Hanko Seal Badge */
+.inkan-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #8B261E;
+  color: #8B261E;
+  padding: 2px 6px;
+  font-family: var(--font-seal);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: rgba(139, 38, 30, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(139, 38, 30, 0.1);
+}
+
+/* Subtle editorial hairline dividers */
+.hairline-b {
+  border-bottom: 1px solid rgba(23, 22, 20, 0.08);
+}
+.hairline-t {
+  border-top: 1px solid rgba(23, 22, 20, 0.08);
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F7F4;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8D6D0;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A09D95;
+}

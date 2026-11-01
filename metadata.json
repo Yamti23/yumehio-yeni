@@ -1,0 +1,6 @@
+{
+  "name": "Yumeiho Türkiye | Terapi & Eğitim Federasyonu",
+  "description": "Yumeiho Federasyonu Türkiye Temsilcisi Ali Gökmen Düzgün resmi Japon manuel terapi ve uluslararası sertifikalı Dan eğitimleri platformu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
