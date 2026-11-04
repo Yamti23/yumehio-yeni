@@ -1,7 +1,11 @@
 import React from 'react';
 import { REPRESENTATIVE_INFO } from '../data/yumeihoData';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenNewsletter?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenNewsletter }) => {
   return (
     <footer className="bg-stone-900 text-stone-300 py-12 border-t border-stone-800 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,6 +38,16 @@ export const Footer: React.FC = () => {
               <li><a href="#egitim-akademisi" className="hover:text-white transition-colors">Dan Seviyeleri & Seminerler</a></li>
               <li><a href="#100-kata" className="hover:text-white transition-colors">100 Temel Kata Rehberi</a></li>
               <li><a href="#temsilcimiz" className="hover:text-white transition-colors">Ali Gökmen Düzgün</a></li>
+              {onOpenNewsletter && (
+                <li>
+                  <button
+                    onClick={onOpenNewsletter}
+                    className="text-amber-400 hover:text-amber-300 font-medium transition-colors cursor-pointer flex items-center gap-1 mt-1"
+                  >
+                    <span>Klinik Bülten (学術報)</span>
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 

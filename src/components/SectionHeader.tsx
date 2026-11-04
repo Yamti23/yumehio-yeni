@@ -30,7 +30,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-          className="text-xs font-semibold uppercase tracking-widest text-[#8B261E] mb-2 flex items-center gap-2"
+          className="text-xs font-semibold uppercase tracking-widest text-[#8B261E] dark:text-[#C49B66] mb-2 flex items-center gap-2"
         >
           {kicker}
         </motion.p>
@@ -41,7 +41,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-        className="font-serif-luxury text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#171614] [text-wrap:balance]"
+        className="font-serif-luxury text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#171614] dark:text-[#F8F7F4] [text-wrap:balance]"
       >
         {title}
       </motion.h2>
@@ -52,7 +52,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
-          className="text-[#57534E] mt-4 text-base sm:text-lg leading-relaxed font-light"
+          className="text-[#57534E] dark:text-[#A8A29E] mt-4 text-base sm:text-lg leading-relaxed font-light"
         >
           {description}
         </motion.div>

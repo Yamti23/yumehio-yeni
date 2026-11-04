@@ -3,6 +3,8 @@ import { Award, GraduationCap, Calendar, MapPin, Users, CheckCircle2, ArrowRight
 import { DAN_LEVELS, UPCOMING_SEMINARS, DanLevel } from '../data/yumeihoData';
 import { SectionHeader } from './SectionHeader';
 import { CertificateVerification } from './CertificateVerification';
+import { DanInteractiveMap } from './DanInteractiveMap';
+import { DanLevelDetailModal } from './DanLevelDetailModal';
 
 interface TrainingAcademySectionProps {
   onOpenBooking: (tab: 'seminar', seminarTitle?: string) => void;
@@ -10,6 +12,14 @@ interface TrainingAcademySectionProps {
 
 export const TrainingAcademySection: React.FC<TrainingAcademySectionProps> = ({ onOpenBooking }) => {
   const [selectedDan, setSelectedDan] = useState<DanLevel>(DAN_LEVELS[0]);
+  const [modalDan, setModalDan] = useState<DanLevel | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModalForDan = (dan: DanLevel) => {
+    setSelectedDan(dan);
+    setModalDan(dan);
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="egitim-akademisi" className="py-16 lg:py-24 bg-white border-b border-stone-200">
@@ -49,6 +59,9 @@ export const TrainingAcademySection: React.FC<TrainingAcademySectionProps> = ({ 
           </div>
         </div>
 
+        {/* NEW: Interactive Dan Levels Visual Roadmap Map */}
+        <DanInteractiveMap onSelectDan={handleOpenModalForDan} />
+
         {/* Dan Levels Interactive Tabs & Details */}
         <div className="mb-16">
           <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
@@ -70,7 +83,7 @@ export const TrainingAcademySection: React.FC<TrainingAcademySectionProps> = ({ 
                 <button
                   key={dan.level}
                   onClick={() => setSelectedDan(dan)}
-                  className={`px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg whitespace-nowrap transition-colors flex items-center gap-2 ${
+                  className={`px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
                     isActive
                       ? 'bg-stone-900 text-white shadow-sm'
                       : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
@@ -135,18 +148,35 @@ export const TrainingAcademySection: React.FC<TrainingAcademySectionProps> = ({ 
                   <span className="text-xs font-medium text-stone-500 block">Sertifika Türü</span>
                   <p className="text-xs text-stone-700">Uluslararası Federasyon Tescilli Dan Diploması</p>
                 </div>
-                <button
-                  onClick={() => onOpenBooking('seminar', `${selectedDan.japaneseTitle} - ${selectedDan.turkishTitle}`)}
-                  className="w-full py-3 px-4 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors flex items-center justify-center gap-2"
-                >
-                  <span>Bu Seviyeye Başvur</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                <div className="space-y-2">
+                  <button
+                    onClick={() => handleOpenModalForDan(selectedDan)}
+                    className="w-full py-2.5 px-4 text-xs font-bold text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-amber-300"
+                  >
+                    <span>Müfredat & Klinik Detay Modalını Aç</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => onOpenBooking('seminar', `${selectedDan.japaneseTitle} - ${selectedDan.turkishTitle}`)}
+                    className="w-full py-3 px-4 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                  >
+                    <span>Bu Seviyeye Başvur</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
 
             </div>
           </div>
         </div>
+
+        {/* Modal Window Component */}
+        <DanLevelDetailModal
+          danLevel={modalDan}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onApply={(danTitle) => onOpenBooking('seminar', danTitle)}
+        />
 
         {/* Upcoming Seminars Calendar */}
         <div className="mb-16">
